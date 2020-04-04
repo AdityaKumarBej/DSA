@@ -1,0 +1,64 @@
+METHOD 1 : USING TEMP VARIABLE
+
+public static void main(String[] args)
+{
+int a = 10;
+int b = 20;
+
+System.out.println("Before swapping " + a + " " + b);
+int temp = a;
+a = b;
+b = temp;
+
+System.out.println("After swapping " + a + " " + b);
+}
+
+***********************************************************
+
+METHOD 2 : ARITHMETIC OPERATION (ADDITION AND SUBRACTION)
+
+public static void main(String[] args)
+{
+int a = 10;
+int b = 20;
+
+System.out.println("Before swapping " + a + " " + b);
+
+a = a+b; // 10+20 = 30
+b = a-b; // 30-20 = 10;
+a = a-b; // 30-10 = 20;
+
+System.out.println("After swapping " + a + " " + b);
+
+***********************************************************
+
+METHOD 3 : ARITHMETIC OPERATION (MULTIPLICATION AND DIVISION)
+
+public static void main(String[] args)
+{
+int a = 10;
+int b = 20;
+
+System.out.println("Before swapping " + a + " " + b);
+
+a = a*b; // 10*20 = 200
+b = a/b; // 200/20= 10;
+a = a/b; // 200/10 = 20;
+
+System.out.println("After swapping " + a + " " + b);
+
+***********************************************************
+
+METHOD 4: BITWISE XOR OPERATION 
+
+public static void main(String[] args)
+{
+int a = 10;
+int b = 5;
+
+System.out.println("Before swapping " + a + " " + b);
+
+a = a^b; // a now becomes 15 (1111)
+b = a^b; // b becomes 10 (1010) 
+a = a^b; // a becomes 5 (0101) 
+System.out.println("After swapping " + a + " " + b);
