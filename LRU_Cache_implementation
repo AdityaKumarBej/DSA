@@ -1,0 +1,113 @@
+class LRUCache
+{
+ListNode head;
+ListNode tail;
+int size = 0;
+
+Map<Integer,Node> hmap = new HashMap<Integer,Node>();
+
+int totalItemsInCache;
+int maxCapacity;
+
+LRUCache(int maxCapacity)
+{
+    this.maxCapacity = maxCapacity;
+    totalItemsInCache = 0;
+
+    head = new ListNode();
+    tail = new ListNode();
+
+    head.next = tail;
+    tail.prev = head;
+}
+
+public Integer get(int key)
+{
+    ListNode node = hmap.get(key);
+
+    if(node == null)
+    {
+        return null;
+    }
+
+    aaToFront(node);
+    return node.value;
+}
+
+private void addToFront(ListNode node)
+{
+    ListNode temp = head;
+    head = node;
+    head.next = temp;
+    head.prev = null;
+}
+
+public void put(int key , int value)
+{
+    ListNode node = hmap.get(key);
+
+    if(node == null)
+    {
+        ListNode temp = new ListNode(value);
+
+        addToFront(temp);
+        totalItemsInCache++;
+
+        if(totalItemsInCache > maxCapacity)
+        {
+            removeLRU();
+        }
+    }
+    else
+    {
+        node.value = value;
+        moveToHead(node);
+    }
+}
+
+int size()
+{
+    ListNode temp = head;
+
+    while(temp != null)
+    {
+        size++;
+        temp = temp.next;
+    }
+return size;
+}   
+
+private void removeLRU()
+{
+   ListNode temp = head;
+
+   for(int i = 0 ; i < size-1 ; i++)
+   {
+       temp = temp.next;
+   }
+   temp.next = null;
+   tail = temp;
+   tail.next = null;
+   --totalItemsInCache;
+}
+
+
+private void removeFromList(int value)
+{
+    ListNode temp = head;
+    ListNode curr = null;
+
+    while(temp.value != value)
+    {
+        curr = temp;
+        temp = temp.next;
+    }
+    curr.next = temp.next;
+    temp = null;
+}
+
+private void moveToHead(ListNode node)
+{
+    removeFromList(node);
+    addToFront(node);
+}
