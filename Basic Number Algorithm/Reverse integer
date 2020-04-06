@@ -1,0 +1,20 @@
+public static void main(String[] args)
+{
+
+int n = 1234;
+int rev_n = 0;
+
+while(n != 0)
+{
+rev_n = rev_n*10 + n%10;
+n = n/10;
+}
+
+if(n < 0)
+{
+rev_n *= -1;
+}
+
+System.out.println(rev_n);
+
+}
