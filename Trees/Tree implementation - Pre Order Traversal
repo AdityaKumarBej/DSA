@@ -1,0 +1,75 @@
+Pre order traversal - root -> Left Node -> Right Node
+class Practice
+{
+static class Node
+{
+Node left;
+Node right;
+int value;
+
+  Node(int value)
+  {
+    left = null;
+    right = null;
+    this.value = value;
+  }
+}
+
+void insert(Node node , int value)
+{
+if(value < node.value)
+  {
+  if(node.left != null)
+    {
+    insert(node.left , value);
+    }
+  else
+    {
+    System.out.println("Inserted " + value + " to the left of " + node.value);
+    node.left = new Node(value);
+    }
+   }
+else if(value > node.right)
+  {
+  if(node.right != null)
+    {
+    insert(node.right , value);
+    }
+  else
+    {
+    System.out.println("Inserted " + value + " to the right of " + node.value);
+    node.right = new Node(value);
+    }
+   }
+}
+
+void preOrder(Node node)
+{
+if(node != null)
+  {
+  System.out.println(" " + node.value);
+  print(node.left);
+  print(node.right);
+  }
+}
+
+public static void main(String[] args)
+{
+Node root = new Node(55);
+practice p = new practice();
+
+    p.insert(root , 40);
+    p.insert(root, 15);
+    p.insert(root , 45);
+    p.insert(root , 60);
+    p.insert(root , 57);
+    p.insert(root , 70);
+
+    p.preOrder(root);
+}
+}
+
+    
+    
+    
+    
