@@ -1,0 +1,71 @@
+Post order traversal - Right Node -> Left Node -> Root
+
+class Practice{
+static class Node
+{
+Node left;
+Node right;
+int value;
+
+Node(int value)
+{
+this.value = value;
+left = null;
+right = null;
+}
+}
+
+void insert(Node node , int value)
+{
+if(value < node.value)
+{
+  if(node.left != null)
+  {
+    insert(node.left , value)'
+  }
+  else 
+  {
+  System.out.println("Inserted" + value + " to the left of "  + node.value);
+  node.left = new Node(value);
+  }
+}
+else if(value > node.value)
+  {
+  if(node.right != null)
+    {
+    insert(node.right , value);
+    }
+  else
+    {
+    System.out.println("Inserted " + value + " to the right of " + node.value);
+    node.right = new Node(value);
+    }
+  }
+}
+
+
+void postOrderTraversal(Node node)
+{
+if(node != null)
+{
+postOrderTraversal(node.right);
+postOrderTraversal(node.left);
+System.out.print(" " + node.value);
+}
+}
+
+public static void main(String[] args)
+{
+practice p = new practice();
+Node root = new Node(55);
+    p.insert(root , 40);
+    p.insert(root, 15);
+    p.insert(root , 45);
+    p.insert(root , 60);
+    p.insert(root , 57);
+    p.insert(root , 70);
+
+    p.postOrderTraversal(root);
+    
+}
+}
