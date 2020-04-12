@@ -1,0 +1,77 @@
+import javax.swing.text.AttributeSet;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class practice 
+{
+    static class Node 
+    {
+        Node left;
+        Node right;
+        int value;
+
+        Node(int value) 
+        {
+            this.value = value;
+            left = null;
+            right = null;
+        }
+    }
+
+    static void levelOrder(Node node)
+    {
+        if (node == null)
+        {
+            return;
+        }
+        Queue<Node> q = new LinkedList<>();
+
+        q.add(node);
+        q.add(null);
+
+        while (!q.isEmpty())
+        {
+            Node curr = q.poll();
+  
+            if (curr == null)
+            {
+                if (!q.isEmpty())
+                {
+                    q.add(null);
+                    System.out.println();
+                }
+            }
+            else
+                {
+                if (curr.left != null) 
+                {
+                    q.add(curr.left);
+                }
+                if (curr.right != null) 
+                {
+                    q.add(curr.right);
+                }
+
+                System.out.println(curr.value + " ");
+            }
+        }
+
+    }
+
+    public static void main(String[] args) 
+    {
+        practice p = new practice();
+        Node root = new Node(55);
+
+            root.left = new Node(2);
+            root.right = new Node(3);
+            root.left.left = new Node(4);
+            root.left.right = new Node(5);
+            root.right.right = new Node(6);
+
+        System.out.println("The Levels of the Tree are ");
+
+        p.levelOrder(root);
+
+    }
+}
