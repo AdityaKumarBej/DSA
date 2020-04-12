@@ -1,0 +1,82 @@
+public class practice
+{
+static class Node
+{
+    Node left;
+    Node right;
+    int value;
+
+    Node(int value)
+    {
+        this.value = value;
+        left = null;
+        right = null;
+    }
+}
+
+
+void insert(Node node , int value)
+{
+    if(value < node.value)
+    {
+        if(node.left != null)
+        {
+            insert(node.left , value);
+        }
+        else
+        {
+            System.out.println("Inserted"  + value + " to the left of " + node.value);
+            node.left = new Node(value);
+        }
+    }
+    else if(value > node.value)
+    {
+        if(node.right != null)
+        {
+            insert(node.right , value);
+        }
+        else
+        {
+            System.out.println("Inserted " + value + " to the right of " + node.value);
+            node.right = new Node(value);
+        }
+    }
+}
+
+//Compare the roots, check if they are null , compare the left and right nodes
+public boolean compare(Node node1 , Node node2)
+{
+  if(node1 == null && node2 == null)
+  {
+    return true;
+  }
+  else
+  {
+    return ((node1 != null && node2 != null) && (node1.value == node2.value) && compare(node1.left,node2.left) && compare(node1.right,node2.right));
+  }
+}
+
+public static void main(String[] args)
+{
+    practice p = new practice();
+
+    Node root1 = new Node(55);
+    p.insert(root1 , 40);
+    p.insert(root1, 15);
+    p.insert(root1 , 45);
+    p.insert(root1 , 60);
+    p.insert(root1 , 57);
+    p.insert(root1 , 70);
+
+    Node root2 = new Node(55);
+    p.insert(root2 , 40);
+    p.insert(root2, 15);
+    p.insert(root2 , 45);
+    p.insert(root2 , 60);
+    p.insert(root2 , 57);
+    p.insert(root2 , 70);
+
+    System.out.println( "Both are identitcal ? " + p.compare(root1,root2));
+
+}
+}
