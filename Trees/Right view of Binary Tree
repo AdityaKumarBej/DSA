@@ -1,0 +1,70 @@
+import javax.swing.text.AttributeSet;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class practice {
+    static class Node {
+        Node left;
+        Node right;
+        int value;
+
+        Node(int value) {
+            this.value = value;
+            left = null;
+            right = null;
+        }
+    }
+
+    void rightView(Node node)
+    {
+        if(node == null)
+        {
+            return;
+        }
+        Queue<Node> q = new ArrayDeque<>();
+        q.add(node);
+        while(!q.isEmpty())
+        {
+            int size = q.size();
+            int i = 0;
+
+            while(i++ < size)
+            {
+                Node curr = q.poll();
+ 
+                if(i == size)   //For left view, we see it is equal 
+                {
+                    System.out.println(curr.value +  " ");
+                }
+                if(curr.left != null)
+                {
+                    q.add(curr.left);
+                }
+                if(curr.right != null)
+                {
+                    q.add(curr.right);
+                }
+            }
+        }
+    }
+
+        public static void main (String[] args)
+        {
+            practice p = new practice();
+            Node root = new Node(1);
+
+
+            root = new Node(1);
+            root.left = new Node(2);
+            root.right = new Node(3);
+            root.left.left = new Node(4);
+            root.left.right = new Node(5);
+            root.right.left = new Node(6);
+            root.right.right = new Node(7);
+            root.right.left.right = new Node(8);
+            System.out.println("The Binary Tree is ");
+
+            p.rightView(root);
+
+        }
+}
