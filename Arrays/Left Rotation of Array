@@ -1,0 +1,28 @@
+import javax.swing.text.AttributeSet;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class practice {
+
+        public static void main (String[] args)
+        {
+            int []arr = {1,2,3,4,5,6};
+
+            int temp = arr[0];
+            int i;
+            
+            for(i = 0 ; i < arr.length-1 ;i++)
+            {
+                arr[i] = arr[i+1];
+            }
+            
+            arr[i] = temp;
+            
+
+            for(int x : arr)
+            {
+                System.out.print(x + " ");
+            }
+
+        }
+}
