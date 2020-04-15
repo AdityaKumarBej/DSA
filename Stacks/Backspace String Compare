@@ -1,0 +1,89 @@
+Given two strings S and T, return if they are equal when both are typed into empty text editors. # means a backspace character.
+
+Note that after backspacing an empty text, the text will continue empty.
+
+Example 1:
+
+Input: S = "ab#c", T = "ad#c"
+Output: true
+Explanation: Both S and T become "ac".
+Example 2:
+
+Input: S = "ab##", T = "c#d#"
+Output: true
+Explanation: Both S and T become "".
+Example 3:
+
+Input: S = "a##c", T = "#a#c"
+Output: true
+Explanation: Both S and T become "c".
+Example 4:
+
+Input: S = "a#c", T = "b"
+Output: false
+Explanation: S becomes "c" while T becomes "b".
+
+class Solution {
+    public boolean backspaceCompare(String S, String T) 
+    {
+        
+               boolean check = true;
+        char [] arr1 = S.toCharArray();
+        char [] arr2 = T.toCharArray();
+
+        Stack<Character> stack1 = new Stack<Character>();
+        Stack<Character> stack2 = new Stack<Character>();
+
+        for(char x : arr1)
+        {
+            if(stack1.isEmpty() && x != '#')
+            {
+                stack1.push(x);
+            }
+            else if(!stack1.isEmpty())
+            {
+                if(x == '#')
+                {
+                    stack1.pop();
+                }
+                else
+                {
+                    stack1.push(x);
+                }
+            }
+        }
+
+        for(char x : arr2)
+        {
+            if(stack2.isEmpty() && x != '#')
+            {
+                stack2.push(x);
+            }
+            
+            else if(!stack2.isEmpty())
+            {
+                if(x == '#')
+                {
+                    stack2.pop();
+                }
+                else
+                {
+                    stack2.push(x);
+                }
+            }
+        }
+
+        if(stack1.equals(stack2))
+        {
+            check = true;
+        }
+        else
+        {
+            check = false;
+        }
+
+        
+        return check;
+        
+    }
+}
