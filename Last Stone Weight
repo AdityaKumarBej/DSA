@@ -1,0 +1,68 @@
+Last Stone Weight
+
+We have a collection of stones, each stone has a positive integer weight.
+
+Each turn, we choose the two heaviest stones and smash them together.  Suppose the stones have weights x and y with x <= y.  The result of this smash is:
+
+If x == y, both stones are totally destroyed;
+If x != y, the stone of weight x is totally destroyed, and the stone of weight y has new weight y-x.
+At the end, there is at most 1 stone left.  Return the weight of this stone (or 0 if there are no stones left.)
+
+ 
+
+Example 1:
+
+Input: [2,7,4,1,8,1]
+Output: 1
+Explanation: 
+We combine 7 and 8 to get 1 so the array converts to [2,4,1,1,1] then,
+we combine 2 and 4 to get 2 so the array converts to [2,1,1,1] then,
+we combine 2 and 1 to get 1 so the array converts to [1,1,1] then,
+we combine 1 and 1 to get 0 so the array converts to [1] then that's the value of last stone.
+ 
+
+Note:
+
+1 <= stones.length <= 30
+1 <= stones[i] <= 1000
+
+
+
+
+class Solution {
+    public int lastStoneWeight(int[] stones) 
+    {
+        
+          Arrays.sort(stones);
+        ArrayList<Integer> list1 = new ArrayList<Integer>();
+
+        for(int x : stones)
+        {
+            list1.add(x);
+        }
+       
+        
+            for(int i  = list1.size()-1 ; i > 0 ; i--)
+            {
+                int res = Math.abs(list1.get(i) - list1.get(i-1));
+                {
+                    list1.remove(i);
+                    list1.remove(i-1);
+                    list1.add(res);
+                    Collections.sort(list1);
+                }
+
+            }
+
+        System.out.println(list1);
+        int sum = 0;
+
+        for(int k = 0 ; k < list1.size() ; k++)
+        {
+            sum = list1.get(k) - sum;
+        }
+        
+        return Math.abs(sum);
+        
+    }
+}
