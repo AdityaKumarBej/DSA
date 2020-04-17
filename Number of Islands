@@ -1,8 +1,9 @@
- Number of Islands
+Number of Islands
 Solution
 Given a 2d grid map of '1's (land) and '0's (water), count the number of islands.
 An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
 You may assume all four edges of the grid are all surrounded by water.
+
 
 Example 1:
 
@@ -22,7 +23,6 @@ Input:
 00011
 
 Output: 3
-
 
 public int numsIslands(char [][] grid)
 {
@@ -50,10 +50,10 @@ if(i < 0 || j < 0 || i >= grid.length || j >= grid[i].length || grid[i][j] == '0
   
 
 grid[i][j] = '0';
-callBFS(grid , i+1 , j);
-callBFS(grid, i-1 , j);
-callBFS(grid , i , j+1);
-callBFS(grid , i , j-1);
+callBFS(grid , i+1 , j); //recursive call for checking bottom element of 1
+callBFS(grid, i-1 , j); //recursive call for checking top element of 1
+callBFS(grid , i , j+1); //recursive call for checking right element of 1
+callBFS(grid , i , j-1); //recursive call for checking left element of 1
 
 }
 
