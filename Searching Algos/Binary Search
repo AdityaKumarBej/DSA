@@ -1,0 +1,32 @@
+Binary Search applies to only sorted arrays
+
+
+public static void main(String[] args)
+{
+int [] arr = {0,1,2,3,4,5};
+
+int target = 2;
+
+int left = 0;
+int right = arr.length-1;
+
+while(left <= right)
+{
+int middle = left + (right-left)/2;
+
+if(arr[middle] == target)
+  {
+    System.out.println("Found at " + middle);
+    break;
+  }
+else if(arr[middle] < target)    //Shift +1 to right because target is greater than middle element
+  {
+  left = middle + 1;
+  }
+else
+  {
+  right = middle - 1;           //Shift -1 to left because target is smaller than middle element
+  }
+}
+
+}
