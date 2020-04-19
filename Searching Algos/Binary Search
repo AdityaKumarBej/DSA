@@ -1,5 +1,6 @@
 Binary Search applies to only sorted arrays
 
+ITERATIVE IMPLEMENTATION
 
 public static void main(String[] args)
 {
@@ -30,3 +31,10 @@ else
 }
 
 }
+
+
+**************************************************************************************************
+
+RECURSIVE IMPLEMENTATION
+
+
