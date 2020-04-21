@@ -37,4 +37,45 @@ else
 
 RECURSIVE IMPLEMENTATION
 
+public static void main(String[] args)
+{
+int [] arr = {0,1,2,3,4,5};
 
+int target = 2;
+
+int result = search(arr , 0 , arr.length-1 , target);
+
+if(result == -1)
+{
+System.out.println("Not exists");
+}
+else
+{
+System.out.println("Exists at " + result);
+}
+}
+
+int search(int [] arr , int left , int right , int target)
+{
+
+if(right >= left)
+{
+  int middle = left + (right-left)/2;
+  
+  if(arr[middle] == target)
+  {
+  return middle;
+  }
+  
+  else if(arr[middle] > target)
+  {
+  return search(arr , l , mid-1 , target);  //Should be present between left and middle;
+  }
+  
+  else
+  {
+  return search(arr , mid+1 , right , target); //Should be present between middle and right;
+  }
+
+return -1;
+}
