@@ -1,0 +1,108 @@
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+public class practice {
+    Node head;
+    Node tail;
+    static int size = 0;
+    class Node
+    {
+        Node next = null;
+        int value;
+
+        Node(int value)
+        {
+            this.value = value;
+            next = null;
+        }
+    }
+
+
+    void push(int new_data)
+    {
+        Node new_node = new Node(new_data);
+        if(head == null)
+        {
+            head = new_node;
+            tail = new_node;
+        }
+        else
+        {
+            tail.next = new_node;
+            tail = new_node;
+        }
+        size++;
+    }
+
+    void max()
+    {
+        Node temp = head;
+        Node curr = null;
+        int max = temp.value;
+
+        while(temp != null)
+        {
+            curr = temp;
+
+            if(curr.value > max)
+            {
+                max = curr.value;
+            }
+            temp = temp.next;
+        }
+
+        System.out.println("Max value is " + max);
+    }
+
+    void min()
+    {
+        Node temp = head;
+        Node curr = null;
+
+        int min = temp.value;
+
+        while(temp != null)
+        {
+            curr = temp;
+
+            if(curr.value < min)
+            {
+                min = curr.value;
+            }
+            temp = temp.next;
+        }
+
+        System.out.println("Minimum value is " + min);
+    }
+
+
+    void print() {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.value + " ");
+            if (temp.next != null) {
+                System.out.print("->");
+            }
+            temp = temp.next;
+        }
+    }
+
+        public static void main(String[] args)
+        {
+            practice p = new practice();
+
+            p.push(1132);
+            p.push(221);
+            p.push(33121);
+            p.push(42);
+
+            p.print();
+
+            p.max();
+            p.min();
+
+
+        }
+}
