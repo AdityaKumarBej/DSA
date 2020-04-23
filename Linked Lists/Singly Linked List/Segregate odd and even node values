@@ -1,0 +1,124 @@
+In a linked list , make sure all even value nodes are grouped together followed by odd value nodes
+
+
+import java.lang.reflect.Array;
+import java.util.*;
+
+
+public class practice {
+    Node head;
+    Node tail;
+    static int size = 0;
+    class Node
+    {
+        Node next = null;
+        int value;
+
+        Node(int value)
+        {
+            this.value = value;
+            next = null;
+        }
+    }
+
+
+    void push(int new_data)
+    {
+        Node new_node = new Node(new_data);
+        if(head == null)
+        {
+            head = new_node;
+            tail = new_node;
+        }
+        else
+        {
+            tail.next = new_node;
+            tail = new_node;
+        }
+        size++;
+    }
+
+void seperate()
+{
+    Node e_head = null;
+    Node e_tail = null;
+    Node o_head = null;
+    Node o_tail = null;
+
+    Node temp = head;
+
+    while(temp != null)
+    {
+        if(temp.value % 2 == 0)
+        {
+            if(e_head == null)
+            {
+                e_head = temp;
+                e_tail = temp;
+            }
+            else
+            {
+                e_tail.next = temp;
+                e_tail = e_tail.next;
+            }
+        }
+        else {
+            if (o_head == null)
+            {
+                o_head = temp;
+                o_tail = temp;
+            }
+            else
+            {
+                o_tail.next = temp;
+                o_tail = o_tail.next;
+            }
+        }
+        temp = temp.next;
+    }
+
+    e_tail.next = o_head;   //Attach end of even tail to odd head
+    o_tail.next = null;     //Odd tail points to null
+
+    Node x = e_head;
+
+    while (x != null)
+    {
+        System.out.print(x.value + " ");
+        if (x.next != null) {
+            System.out.print("->");
+        }
+        x = x.next;
+    }
+}
+
+
+    void print() {
+        Node temp = head;
+
+        while (temp != null)
+        {
+            System.out.print(temp.value + " ");
+            if (temp.next != null) {
+                System.out.print("->");
+            }
+            temp = temp.next;
+        }
+    }
+
+        public static void main(String[] args)
+        {
+            practice p = new practice();
+
+            p.push(1);
+            p.push(2);
+            p.push(3);
+            p.push(4);
+            p.push(5);
+            p.print();
+
+            System.out.println();
+            p.seperate();
+
+        }
+}
