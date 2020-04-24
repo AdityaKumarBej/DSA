@@ -1,0 +1,120 @@
+public class practice
+{
+
+    Node head;
+    Node tail;
+    static int size = 0;
+    class Node
+    {
+        Node next;
+        Node prev;
+
+        int value;
+        Node(int value)
+        {
+            this.value = value;
+            next = null;
+            prev = null;
+        }
+    }
+
+    void print()
+    {
+        Node temp = head;
+
+        while(temp != null)
+        {
+            System.out.print(temp.value + " ");
+
+            if(temp.next != null)
+            {
+                System.out.print(" <-> ");
+            }
+
+            temp = temp.next;
+        }
+    }
+    void push(int new_data)
+    {
+        Node new_node = new Node(new_data);
+        if(head == null)
+        {
+            head = new_node;
+            tail = new_node;
+            head.prev = null;
+            tail.next = null;
+        }
+        else
+        {
+            tail.next = new_node;
+            new_node.prev = tail;
+            tail = new_node;
+            tail.next = null;
+        }
+        size++;
+    }
+
+    void deleteBeginning()
+    {
+        head = head.next;
+        head.prev = null;
+
+        size--;
+    }
+
+    void deleteMiddle()
+    {
+        int pos = (size % 2 == 0) ? (size/2) : (size+1)/2;
+
+        Node temp = head;
+        Node curr = null;
+
+        for(int i = 0 ; i < pos ; i++)
+        {
+            curr = temp;
+            temp = temp.next;
+        }
+
+        curr.next = temp.next;
+        temp = null;
+
+        size--;
+
+    }
+
+    void deleteEnd()
+    {
+        Node temp = head;
+        Node curr = null;
+
+      for(int i = 0 ; i < size-1 ; i++)
+      {
+          curr = temp;
+          temp = temp.next;
+      }
+
+      curr.next = null;
+      tail = curr;
+      tail.next = null;
+
+      size--;
+    }
+
+    public static void main(String[] args)
+    {
+        practice p = new practice();
+
+        p.push(1);
+        p.push(2);
+        p.push(3);
+        p.push(4);
+        p.push(5);
+
+        p.deleteBeginning();
+        p.deleteMiddle();
+        p.deleteEnd();
+        
+        p.print();
+
+    }
+}
