@@ -1,0 +1,100 @@
+import java.util.*;
+
+public class practice
+{
+
+    Node head;
+    Node tail;
+    static int size = 0;
+    class Node
+    {
+        Node next;
+        Node prev;
+
+        int value;
+        Node(int value)
+        {
+            this.value = value;
+            next = null;
+            prev = null;
+        }
+    }
+
+
+    void print()
+    {
+        Node temp = head;
+
+        while(temp != null)
+        {
+            System.out.print(temp.value + " ");
+
+            if(temp.next != null)
+            {
+                System.out.print(" <-> ");
+            }
+
+            temp = temp.next;
+        }
+    }
+    void push(int new_data)
+    {
+        Node new_node = new Node(new_data);
+        if(head == null)
+        {
+            head = new_node;
+            tail = new_node;
+            head.prev = null;
+            tail.next = null;
+        }
+        else
+        {
+            tail.next = new_node;
+            new_node.prev = tail;
+            tail = new_node;
+            tail.next = null;
+        }
+        size++;
+    }
+
+    void sort()
+    {
+        Node temp = head;
+        Node curr = null;
+
+        while(temp != null)
+        {
+            curr = temp.next;
+            while(curr != null)
+            {
+                if (temp.value > curr.value)
+                {
+                    int x = temp.value;
+                    temp.value = curr.value;
+                    curr.value = x;
+                }
+                curr = curr.next;
+            }
+            temp = temp.next;
+        }
+
+    }
+
+    public static void main(String[] args)
+    {
+        practice p = new practice();
+
+        p.push(1);
+        p.push(2);
+        p.push(7);
+        p.push(5);
+        p.push(3);
+
+        p.print();
+        System.out.println();
+
+        p.sort();
+        p.print();
+
+    }
+}
