@@ -70,7 +70,7 @@ public class practice
 
             while(index != null)
             {
-                if(curr.value == index.value)
+                if(temp.value == index.value)
                 {
                     curr.next = index.next;
                 }
