@@ -1,0 +1,60 @@
+    static boolean compareLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) 
+    {
+        int size1 = 0;
+        int size2 = 0;
+
+        boolean check = true;
+
+        if(head1 == null && head2 == null)
+        {
+            check = true;
+        }
+
+        SinglyLinkedListNode x = head1;
+        SinglyLinkedListNode y = head2;
+
+        while(x != null)
+        {
+            size1++;
+            x = x.next;
+        }
+
+        while(y != null)
+        {
+            size2++;
+            y = y.next;
+        }
+
+System.out.print(size1 + " " + size2);
+
+        SinglyLinkedListNode temp1 = head1;
+        SinglyLinkedListNode temp2 = head2;
+
+
+        if(size1 == size2)
+        {
+        while(temp1 != null && temp2 != null)
+        {
+            if(temp1.data != temp2.data)
+            {
+                
+                check = false;
+                break;
+            }
+            else
+            {
+                check = true;
+            }
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
+        }
+        else 
+        {
+            check = false;
+        }
+        
+
+    return check;
+
+    }
