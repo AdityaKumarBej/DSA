@@ -1,0 +1,28 @@
+
+void flatten(Node node)
+{
+    Stack<Node> stack = new Stack<Node>();
+    
+    stack.push(node);
+
+    while(!stack.isEmpty())
+    {
+        Node curr = stack.pop();
+
+        if(curr.right != null)
+        {
+            stack.push(curr.right);
+        }
+        if(curr.left != null)
+        {
+            stack.push(curr.left);
+        }
+       
+        if(!stack.isEmpty())
+        {
+            curr.right = stack.peek();
+        }
+        
+    curr.left = null;
+    }
+}
