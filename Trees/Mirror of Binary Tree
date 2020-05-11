@@ -1,0 +1,63 @@
+class Solution
+{
+  static class Node
+  {
+    Node left;
+    Node right;
+    int value;
+   	
+    Node(int value)
+    {
+      this.value = value;
+      left = null;
+      right = null;
+    }
+  }
+  
+  void print(Node root)
+  {
+    if(root != null)
+    {
+      print(root.left);
+      System.out.println(root.value + " ");
+      print(root.right);
+    }
+  }
+  
+  void mirror(Node root)
+  {
+    if(root == null)
+    {
+      return;
+    }
+    
+    mirror(root.left);
+    mirror(root.right);
+    
+    Node temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+  }
+  
+  public static void main(String[] args)
+  {
+    Solution p = new Solution();
+    Node root = new Node(55);
+    root.left = new Node(30);
+    root.left.left = new Node(15);
+    root.left.right = new Node(45);
+    root.right = new Node(65);
+    root.right.left = new Node(60);
+    root.right.right = new Node(79);
+
+    System.out.println("Before mirror");
+    p.print(root);
+    
+    System.out.println("After mirror");
+    p.mirror(root);
+    
+    p.print(root);
+    
+  }
+}
+    
