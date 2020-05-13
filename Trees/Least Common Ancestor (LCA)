@@ -1,0 +1,28 @@
+public Node leastCommonAncestor(Node root , Node p , Node q)
+{
+	if(root == null)
+	{
+		return null;
+	}
+
+	if(root == p || root == q)
+	{
+		return root;
+	}
+
+	Node left = leastCommonAncestor(root.left , p , q);
+	Node right = leastCommonAncestor(root.right , p , q);
+
+	if((left == p && right == q) || (left == q && right == p))
+	{
+		return root;
+	}
+	else if(left == null)
+	{
+		return right;
+	}
+	else
+	{
+		return left;
+	}
+}
