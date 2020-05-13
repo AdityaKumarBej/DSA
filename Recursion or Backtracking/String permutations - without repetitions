@@ -1,0 +1,39 @@
+public static void main(String [] args)
+        {
+            String s1 = "BCDA";
+
+            System.out.println("Permutations are");
+            permut(s1,0 , s1.length());
+        }
+
+
+        public static void permut(String str , int start , int end)
+        {
+            if (start == end-1)
+            {
+                System.out.println(str);
+            }
+            else
+            {
+                for(int i = start ; i < end ; i++)
+                {
+                    str = swapString(str,start,i);
+                    permut(str,start+1,end);
+                    str = swapString(str,start,i);
+                }
+            }
+
+        }
+
+        public static String swapString(String a , int i , int j)
+        {
+
+            char[] arr = a.toCharArray();
+
+            char temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+
+            return String.valueOf(arr);
+        }
+    }
