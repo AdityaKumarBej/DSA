@@ -1,0 +1,69 @@
+import java.util.*;
+class practice3 {
+
+    static class Edge
+    {
+        int src;
+        int dest;
+        int weight;
+
+        Edge(int src , int dest , int weight)
+        {
+            this.src = src;
+            this.dest = dest;
+            this.weight = weight;
+        }
+    }
+
+    static class Node
+    {
+        int weight;
+        int value;
+
+        Node(int weight , int value)
+        {
+            this.weight = weight;
+            this.value = value;
+        }
+    }
+
+    List<List<Node>> adj = new ArrayList<>();
+
+    public practice3(List<Edge> edges)
+    {
+        for(int i = 0 ; i < edges.size() ; i++)
+        {
+            adj.add(i , new ArrayList<>());
+        }
+
+        for(Edge x : edges)
+        {
+            adj.get(x.src).add(new Node(x.dest , x.weight));
+        }
+    }
+    
+    public static void print(practice3 graph)
+    {
+        int src = 0;
+        int n = graph.adj.size();
+
+
+        while(src < n)
+        {
+            for(Node dest : graph.adj.get(src))
+            {
+                System.out.println(src + " -> " + dest.value + " ( " + dest.weight + " ) ");
+            }
+            src++;
+        }
+    }
+
+
+    public static void main(String[] args)
+    {
+        List<Edge> list = Arrays.asList(new Edge(0,1,3) , new Edge(1,2,9) , new Edge(0,2,5));
+        practice3 s = new practice3(list);
+
+        print(s);
+    }
+}
