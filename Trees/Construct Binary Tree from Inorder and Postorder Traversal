@@ -1,0 +1,55 @@
+Construct Binary Tree from Inorder and Postorder Traversal
+
+Given inorder and postorder traversal of a tree, construct the binary tree.
+
+Note:
+You may assume that duplicates do not exist in the tree.
+
+For example, given
+
+inorder = [9,3,15,20,7]
+postorder = [9,15,7,20,3]
+Return the following binary tree:
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+   
+class Solution
+{
+	int index;
+	public TreeNode buildTree(int[] inorder, int[] postorder) 
+  { 
+    
+    HashMap<Integer,Integer> hmap = new HashMap<Integer,Integer>();
+    
+    index = postorder.length-1;
+    
+    int p_start = 0;
+    int p_end = postorder.length-1;
+    return helper(p_start , p_end , hmap , inorder , postorder);
+   }
+   
+   
+   public TreeNode helper(int p_start , int p_end , HashMap<Integer,Integer> hmap , int [] inorder , int [] postorder)
+   {
+   
+     if(p_start > p_end)
+     {
+        return null;
+     }
+     
+     TreeNode root = new TreeNode(postorder[index--]);
+     
+     int pos = hmap.get(root.val);
+     
+     root.right = helper(pos+1 , p_end , hmap , inorder , postorder);
+     root.left = helper(p_start , pos-1 , hmap , inorder , postorder);
+     
+     
+     return root;
+    }   
+}
+   
