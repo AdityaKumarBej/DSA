@@ -1,0 +1,56 @@
+//METHOD 1 - ITERATIVE
+
+
+public int countLeaves(Node root)
+{
+
+if(root == null)
+{
+  return 0;
+}
+
+Queue<Node> q = new LinkedList<>();
+q.add(root);
+int count = 0;
+
+while(!q.isEmpty())
+{
+  Node curr = q.poll();
+  
+  if(curr.left != null)
+  {
+    q.add(curr.left);
+  }
+  if(curr.right != null)
+  {
+    q.add(curr.right);
+  }
+  if(curr.left == null && curr.right == null)
+  {
+    count++;
+  }
+}
+
+return count;
+}
+
+
+//METHOD 2 - RECURSIVE
+
+int getLeaves(Node root)
+{
+  if(root == null)
+  {
+    return 0;
+  }
+  if(root.left == null && root.right == null)
+  {
+    return 1;
+  }
+  else
+  {
+    return getLeaves(root.left) + getLeaves(root.right);
+}
+}
+
+  
