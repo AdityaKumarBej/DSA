@@ -1,4 +1,4 @@
-Populating Next Right Pointers in Each Node
+Populating Next Right Pointers in Each Node i
 
 You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
 
@@ -105,3 +105,95 @@ class Solution {
         return root;
     }
 }
+
+
+*********************************************************************************************************
+
+Populating Next Right Pointers in Each Node II Oct 28 '12
+Follow up for problem "Populating Next Right Pointers in Each Node".
+
+What if the given tree could be any binary tree? Would your previous solution still work?
+
+Note:
+
+You may only use constant extra space.
+For example,
+Given the following binary tree,
+         1
+       /  \
+      2    3
+     / \    \
+    4   5    7
+After calling your function, the tree should look like:
+         1 -> NULL
+       /  \
+      2 -> 3 -> NULL
+     / \    \
+    4-> 5 -> 7 -> NULL
+    
+    /*
+// Definition for a Node.
+class Node {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node next;
+
+    public Node() {}
+    
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, Node _left, Node _right, Node _next) {
+        val = _val;
+        left = _left;
+        right = _right;
+        next = _next;
+    }
+};
+*/
+
+class Solution {
+    public Node connect(Node root) 
+    {
+        
+        if(root == null)
+        {
+            return null;
+        }
+        Queue<Node> q = new LinkedList<Node>();
+        
+        q.add(root);
+       
+        while(!q.isEmpty())
+        {
+            Node prev = null;
+            int size = q.size();
+            for(int i = 0 ; i < size ; i++)
+            {
+                Node curr = q.poll();
+                
+                if(prev != null)
+                {
+                    prev.next = curr;   
+                }
+                prev = curr;
+            
+            
+                if(curr.left != null)
+                {
+                    q.add(curr.left);
+                }
+                if(curr.right != null)
+                {
+                    q.add(curr.right);
+                }
+            }
+        }
+        
+        return root;
+        }
+        
+    }
+
