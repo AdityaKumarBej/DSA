@@ -1,0 +1,92 @@
+Step 1 : Function to implement the conversion , inorder style of tree retrieval 
+Step 2 : Inside function , recursive call to get left subtree first
+Step 3 : Implement logic to keep pushing node into empty list
+Step 4 : Recursive call to get right tree
+Step 5 : Return head and print
+
+
+import java.util.*;
+class practice3 {
+
+    Node head;
+    Node tail;
+
+    static class Node
+    {
+        Node left;
+        Node right;
+        int value;
+
+        Node next;
+        Node prev;
+
+        Node(int value)
+        {
+            this.value = value;
+            left = null;
+            next = null;
+            prev = null;
+            right = null;
+        }
+    }
+    
+    
+    public Node conversion(Node node)
+    {
+        if(node == null)
+        {
+            return null;
+        }
+
+        conversion(node.left);
+
+        Node new_node = new Node(node.value);
+
+        if(head == null)
+        {
+            head = new_node;
+            tail = new_node;
+        }
+        else
+        {
+            tail.next = new_node;
+            new_node.prev = tail;
+            tail = new_node;
+            tail.next = null;
+        }
+        conversion(node.right);
+
+        return head;
+    }
+
+
+    void print(Node node)
+    {
+        while(node != null)
+        {
+            System.out.print(node.value);
+            if(node.next != null)
+            {
+                System.out.print(" <-> ");
+            }
+            node = node.next;
+        }
+    }
+    public static void main(String[] args)
+    {
+        practice3 p = new practice3();
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
+
+
+        Node head = p.conversion(root);
+        p.print(head);
+
+    }
+
+}
