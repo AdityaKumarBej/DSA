@@ -1,0 +1,93 @@
+import java.util.*;
+class practice3 {
+
+    Node head;
+    Node tail;
+
+    static class Node
+    {
+        Node left;
+        Node right;
+        int value;
+
+        Node next;
+        Node prev;
+
+        Node(int value)
+        {
+            this.value = value;
+            left = null;
+            next = null;
+            prev = null;
+            right = null;
+        }
+    }
+
+    Node leavesToDLL(Node node)
+    {
+
+        if(node ==null) {
+            return null;
+        }
+            if(node.left == null && node.right == null)
+            {
+                Node new_node = new Node(node.value);
+
+                if(head == null)
+                {
+                    head = new_node;
+                    tail = new_node;
+                }
+                else
+                {
+                    tail.next = new_node;
+                    new_node.prev = tail;
+                    tail = new_node;
+                    tail.next = null;
+                }
+            }
+            node.left = leavesToDLL(node.left);
+            node.right = leavesToDLL(node.right);
+
+    return head;
+    }
+
+
+    void print(Node node)
+    {
+        Node temp = node;
+
+        while(temp != null)
+        {
+            System.out.print(temp.value);
+            if(temp.next != null)
+            {
+                System.out.print(" -> ");
+            }
+            temp = temp.next;
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        practice3 p = new practice3();
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.right = new Node(6);
+        root.left.left.left = new Node(7);
+        root.left.left.right = new Node(8);
+        root.right.right.left = new Node(9);
+        root.right.right.right = new Node(10);
+
+       p.leavesToDLL(root);
+
+        p.print(p.head);
+
+
+    }
+
+}
