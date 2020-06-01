@@ -1,0 +1,43 @@
+class Tree
+{
+    int minValue(Node node)
+    {
+        if(node == null)
+        {
+            return 0;
+        }
+        
+        while(node.left != null)
+        {
+            node = node.left;
+        }
+        return node.data;
+    }
+}
+
+*******************************************************************************
+FOR NOT BST
+int minValue(Node root)
+{
+	if(root == null)
+	{
+		return -1;
+	}
+
+
+	if(root.left != null)
+	{
+		while(root.left != null)
+		{
+			root = root.left;
+		}
+		return root.val;
+	}
+	else if(root.left == null)
+	{
+		if(root.right != null)
+		{
+			return root.right.val;
+		}
+	}
+}
