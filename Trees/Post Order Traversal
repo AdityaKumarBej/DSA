@@ -1,0 +1,127 @@
+Post order traversal - Right Node -> Left Node -> Root
+
+class Practice{
+static class Node
+{
+Node left;
+Node right;
+int value;
+
+Node(int value)
+{
+this.value = value;
+left = null;
+right = null;
+}
+}
+
+void insert(Node node , int value)
+{
+if(value < node.value)
+{
+  if(node.left != null)
+  {
+    insert(node.left , value)'
+  }
+  else 
+  {
+  System.out.println("Inserted" + value + " to the left of "  + node.value);
+  node.left = new Node(value);
+  }
+}
+else if(value > node.value)
+  {
+  if(node.right != null)
+    {
+    insert(node.right , value);
+    }
+  else
+    {
+    System.out.println("Inserted " + value + " to the right of " + node.value);
+    node.right = new Node(value);
+    }
+  }
+}
+
+
+void postOrderTraversal(Node node)
+{
+if(node != null)
+{
+postOrderTraversal(node.right);
+postOrderTraversal(node.left);
+System.out.print(" " + node.value);
+}
+}
+
+public static void main(String[] args)
+{
+practice p = new practice();
+Node root = new Node(55);
+    p.insert(root , 40);
+    p.insert(root, 15);
+    p.insert(root , 45);
+    p.insert(root , 60);
+    p.insert(root , 57);
+    p.insert(root , 70);
+
+    p.postOrderTraversal(root);
+    
+}
+}
+
+
+**************************************************************************************************
+
+METHOD 2 : USING 2 STACKS (ITERATIVE)
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        
+        Stack<TreeNode> s1 = new Stack<TreeNode>();
+        Stack<TreeNode> s2 = new Stack<TreeNode>();
+        
+        List<Integer> list = new ArrayList<Integer>();
+        
+        if(root == null)
+        {
+            return list;
+        }
+        
+        s1.push(root);
+        
+        while(!s1.isEmpty())
+        {
+            TreeNode curr = s1.pop();
+            
+            s2.push(curr);
+            
+            if(curr.left != null)s1.push(curr.left);
+            if(curr.right != null)s1.push(curr.right);
+        }
+        
+        while(!s2.isEmpty())
+        {
+            TreeNode curr = s2.pop();
+            list.add(curr.val);
+        }
+        
+        return list;
+        
+    }
+}
