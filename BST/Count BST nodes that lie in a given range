@@ -1,0 +1,42 @@
+Given a Binary Search Tree (BST) and a range, count number of nodes that lie in the given range.
+Examples:
+
+Input:
+        10
+      /    \
+    5       50
+   /       /  \
+ 1       40   100
+Range: [5, 45]
+
+Output:  3
+There are three nodes in range, 5, 10 and 40
+
+
+public static int getCountOfNode(Node root,int l, int h)
+{
+        if(root == null)return 0;
+        int count = 0;
+        
+        Stack<Node> s = new Stack<Node>();
+        
+        Node curr = root;
+        
+        while(!s.isEmpty() || curr != null)
+        {
+            while(curr != null)
+            {
+                s.push(curr);
+                curr = curr.left;
+            }
+            
+            curr = s.pop();
+            
+            if(curr.data >= l && curr.data <= h)
+            {
+                count++;
+            }
+            curr = curr.right;
+        }
+        return count;
+    
