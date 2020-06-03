@@ -1,0 +1,121 @@
+In order traversal - Left Node -> Root -> Right Node
+
+METHOD 1 : RECURSIVE
+
+class Practice{
+static class Node
+{
+Node left;
+Node right;
+int value;
+
+Node(int value)
+{
+this.value = value;
+left = null;
+right = null;
+}
+}
+
+void insert(Node node , int value)
+{
+if(value < node.value)
+{
+  if(node.left != null)
+  {
+    insert(node.left , value)'
+  }
+  else 
+  {
+  System.out.println("Inserted" + value + " to the left of "  + node.value);
+  node.left = new Node(value);
+  }
+}
+else if(value > node.value)
+  {
+  if(node.right != null)
+    {
+    insert(node.right , value);
+    }
+  else
+    {
+    System.out.println("Inserted " + value + " to the right of " + node.value);
+    node.right = new Node(value);
+    }
+  }
+}
+
+
+void inOrderTraversal(Node node)
+{
+if(node != null)
+{
+inOrderTraversal(node.left);
+System.out.println(" " + node.value);
+inOrderTraversal(node.right);
+}
+}
+
+public static void main(String[] args)
+{
+practice p = new practice();
+Node root = new Node(55);
+    p.insert(root , 40);
+    p.insert(root, 15);
+    p.insert(root , 45);
+    p.insert(root , 60);
+    p.insert(root , 57);
+    p.insert(root , 70);
+
+    p.inOrderTraversal(root);
+    
+}
+}
+
+*********************************************************************************************************************************
+
+METHOD 2 : ITERATIVE (USING STACKS)
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) 
+    {
+        List<Integer> list = new ArrayList<Integer>();
+        
+        Stack<TreeNode> s = new Stack<TreeNode>();
+                
+        TreeNode curr = root;
+        
+        while(true)
+        {
+            while(curr != null)
+            {
+                s.push(curr);
+                curr = curr.left;
+            }
+            if(s.size() == 0)break;
+            curr = s.pop();
+            list.add(curr.val);
+             
+            curr = curr.right;
+        }
+        
+        return list;
+        
+    }
+    
+}
