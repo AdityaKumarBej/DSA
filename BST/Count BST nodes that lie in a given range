@@ -39,4 +39,25 @@ public static int getCountOfNode(Node root,int l, int h)
             curr = curr.right;
         }
         return count;
+        
+*********************************************************************************************************   
+METHOD 2 : RECURSION
     
+public static int getCountOfNode(Node root,int l, int h)
+{
+        if(root == null)return 0;
+       
+        if(root.data >= l && root.data <= h)
+        {
+            return 1+getCountOfNode(root.left,l,h)+ getCountOfNode(root.right,l,h);
+        }
+        if(root.data >= l)
+        {
+            return getCountOfNode(root.left , l , h);
+        }
+        if(root.data <= h)
+        {
+            return getCountOfNode(root.right , l , h);
+        }
+        return 0;    
+}
