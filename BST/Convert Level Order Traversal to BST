@@ -1,0 +1,55 @@
+Input:
+First line of input contains number of testcases T. For each testcase, first line contains number of elements and next line contains n elements which is level order travesal of a BST.
+
+Output:
+For each test return the pointer to the root of the newly constructed BST.
+
+User Task:
+Your task is to complete the function constructBst() which has two arguments, first as the array containing level order traversal of BST and next argument as the length of array.
+
+Constraints:
+1 <= T <= 100
+1 <= N <= 103
+
+Example:
+Input:
+2
+9
+7 4 12 3 6 8 1 5 10
+6
+1 3 4 6 7 8
+
+Output:
+7 4 3 1 6 5 12 8 10
+1 3 4 6 7 8
+
+
+class GFG {
+    
+    public Node constructBST(int[] arr)
+    {  
+        Node res = null;
+        
+        for(int i = 0 ; i < arr.length ; i++)
+        {
+            res = insert(res , arr[i]);
+        }
+        return res;
+    }
+        
+    public Node insert(Node node , int value)
+    {
+        if(node != null)
+        {
+        if(value < node.data)
+        {   
+            node.left = insert(node.left , value);
+        }
+        else
+        {
+            node.right = insert(node.right , value);
+        }
+        return node;
+       
+    }
+}
