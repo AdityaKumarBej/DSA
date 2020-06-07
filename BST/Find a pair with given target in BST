@@ -1,0 +1,66 @@
+Given a Binary Search Tree and a target number, return true if there exist two elements in the BST such that their sum is equal to the given target.
+
+Example 1:
+
+Input: 
+    5
+   / \
+  3   6
+ / \   \
+2   4   7
+
+Target = 9
+
+Output: True
+ 
+
+Example 2:
+
+Input: 
+    5
+   / \
+  3   6
+ / \   \
+2   4   7
+
+Target = 28
+
+Output: False
+
+class Solution {
+    public boolean findTarget(TreeNode root, int k) {
+        boolean check = true;
+        
+        ArrayList<TreeNode> list = new ArrayList<TreeNode>();
+        inOrder(root , list);
+        
+        TreeNode [] arr = new TreeNode[list.size()];
+        for(int i = 0 ; i < list.size() ; i++)
+        {
+            arr[i] = list.get(i);
+        }
+        
+        for(int i = 0 ; i < arr.length ; i++)
+        {
+            for(int j = i+1 ; j < arr.length ; j++)
+            {
+                if(arr[i].val + arr[j].val == k)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    
+    
+    void inOrder (TreeNode root , ArrayList<TreeNode> list)
+    {
+        if(root != null)
+        {
+            inOrder(root.left , list);
+            list.add(root);
+            inOrder(root.right , list);
+        }
+    }
