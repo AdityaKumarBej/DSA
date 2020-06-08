@@ -64,6 +64,7 @@ class Solution {
 METHOD 2 : RECURSIVE - FASTER
 
 class Solution {
+
     public int rangeSumBST(TreeNode root, int L, int R) {
         
         if(root == null)return 0;
@@ -87,3 +88,39 @@ class Solution {
     }
     
 }
+
+***************************************************************************************************************
+
+METHOD 3 : ITERAVTIVE
+
+public int rangeSumBST(TreeNode root, int L, int R) {
+        
+        if(root == null)return 0;
+        
+        int sum = 0;
+        
+        
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        
+        while(!q.isEmpty())
+        {
+            TreeNode curr = q.poll();
+            
+            if(curr.val >= L && curr.val <=R)
+            {
+                sum+= curr.val;
+            }
+            if(curr.left != null && curr.val >= L)
+            {
+                q.add(curr.left);
+            }
+            if(curr.right != null && curr.val <= R)
+            {
+                q.add(curr.right);
+            }
+        }
+        return sum;
+    }
+    
+    
