@@ -62,3 +62,25 @@ class Solution {
         }
     }
 }
+***********************************************************************************************
+METHOD 2 : RECURSIVE
+
+class Solution {
+    public boolean isValidBST(TreeNode root) 
+    {
+        return validate(root , null , null);    
+    }
+    public boolean validate(TreeNode root , Integer min , Integer max)
+    {
+        if(root == null)return true;
+        
+        else if(max != null && root.val >= max || min != null && root.val <= min)
+        {
+            return false;
+        }
+        else
+        {
+            return validate(root.left , min , root.val) && validate(root.right , root.val , max);
+        }
+    }
+}
