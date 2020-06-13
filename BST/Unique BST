@@ -17,6 +17,10 @@ METHOD 1 : USING CATLAN NUMBERS
 Cn = 1  (2n/n)
     ---
     n+1
+    
+    
+TIME COMPLEXITY - O(N^2)
+
 class Solution {
     public int numTrees(int n) {
         
