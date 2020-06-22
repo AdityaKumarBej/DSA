@@ -1,0 +1,60 @@
+Leaf nodes from Preorder of a Binary Search Tree
+Given a Preorder traversal of a Binary Search Tree. The task is to print leaf nodes of the Binary Search Tree from the given preorder.
+
+Examples:
+
+Input : preorder[] = {890, 325, 290, 530, 965};
+Output : 290 530 965
+Explanation : Tree represented is,
+      890
+     /   \
+  325    965
+  /  \
+290   530
+
+Input : preorder[] = { 3, 2, 4 };
+Output : 2 4   
+   
+   
+   
+   
+   static void leafNode(int [] preorder , int n)
+    {
+        Stack<Integer> stack = new Stack<>();
+
+
+        for(int i = 0 , j = 1 ;i < n && j < n ; i++ , j++)
+        {
+            boolean found = false;
+            int temp = 0;
+            if(preorder[i] > preorder[j])
+            {
+                stack.push(preorder[i]);
+            }
+            else
+            {
+                while(!stack.isEmpty())
+                {
+                    if(preorder[j] > stack.peek())
+                    {
+                        stack.pop();
+                        found = true;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            if(found)
+            {
+                System.out.println(preorder[i]);
+            }
+        }
+        System.out.println(preorder[n-1]);
+    }
+    public static void main(String[] args)
+    {
+        int preorder[] = { 890, 325, 290, 530, 965 };
+        leafNode(preorder , preorder.length);
+    } 
