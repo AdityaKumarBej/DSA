@@ -64,3 +64,32 @@ class Solution {
             inOrder(root.right , list);
         }
     }
+    
+METHOD 2 : USING HASHSET AND RECURSION
+
+
+class Solution {
+    boolean flag = false;
+    HashSet<Integer> hset = new HashSet<>();
+    public boolean findTarget(TreeNode root, int k) {
+        
+        if(root == null)
+            return false;
+        
+        if(hset.contains(k-root.val) & hset.size() != 0) 
+        {
+            flag = true;
+            return flag;
+        }
+        
+        hset.add(root.val);
+        
+       findTarget(root.left , k);
+        findTarget(root.right , k);
+        
+        return flag;
+        
+    }
+}
+
+
