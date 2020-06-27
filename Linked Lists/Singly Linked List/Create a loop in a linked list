@@ -1,0 +1,67 @@
+import java.util.*;
+class practice3 {
+
+    Node head;
+    Node tail;
+    static class Node
+    {
+        Node next;
+        int value;
+        Node(int value)
+        {
+            this.value = value;
+            next = null;
+        }
+    }
+
+    void push(int value)
+    {
+        Node new_node = new Node(value);
+
+        if(head == null)
+        {
+            head = new_node;
+            tail = new_node;
+        }
+        else
+        {
+            tail.next = new_node;
+            tail = new_node;
+            new_node.next = null;
+        }
+    }
+
+    void createLoop(int val)
+    {
+        Node temp = head;
+        Node target = null;
+
+       while(temp != null)
+       {
+           temp = temp.next;
+           if(temp.value == val)
+           {
+               target = temp;
+               break;
+           }
+       }
+
+        tail.next = temp;
+
+    }
+    public static void main(String[] args)
+    {
+
+        practice3 p = new practice3();
+        p.push(1);
+        p.push(2);
+        p.push(3);
+        p.push(4);
+        p.push(5);
+
+        p.createLoop(2);
+
+        System.out.println(p.tail.next.value);
+    }
+}
+
