@@ -1,0 +1,86 @@
+Write a program to check whether a given number is an ugly number.
+
+Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.
+
+Example 1:
+
+Input: 6
+Output: true
+Explanation: 6 = 2 × 3
+Example 2:
+
+Input: 8
+Output: true
+Explanation: 8 = 2 × 2 × 2
+Example 3:
+
+Input: 14
+Output: false 
+Explanation: 14 is not ugly since it includes another prime factor 7.
+
+public boolean uglyNumbers(int a)
+{
+	if(a >= 1)
+	{
+	a = isUgly(a , 2);
+	a = isUgly(a , 3);
+	a = isUgly(a , 5);
+	}
+	else
+	{
+		false;
+	}
+	return if(k == 1) ? true : false;
+
+}
+
+public int isUgly(int a , int b)
+{
+	while(a%b == 0)
+	{
+		a = a/b;
+	}
+	return a;
+}
+
+************************************************************************************************************************************
+
+UGLY NUMBERS 2
+
+Write a program to find the n-th ugly number.
+
+Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. 
+
+Example:
+
+Input: n = 10
+Output: 12
+Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.
+Note:  
+
+1 is typically treated as an ugly number.
+n does not exceed 1690.
+
+class Solution {
+    public int nthUglyNumber(int n) 
+    {
+        int [] arr = new int[n];
+        arr[0] = 1;
+        
+        if(n < 0)return -1; 
+        int i2 = 0;
+        int i3 = 0;
+        int i5 = 0;
+        
+        for(int i = 1 ; i < n ; i++)
+        {
+            arr[i] = Math.min(arr[i2]*2 , Math.min(arr[i3]*3 , arr[i5]*5));
+            
+            if(arr[i] == arr[i2]*2)i2++;
+            if(arr[i] == arr[i3]*3)i3++;
+            if(arr[i] == arr[i5]*5)i5++;
+        }
+        return arr[arr.length-1];
+        
+    }
+}
