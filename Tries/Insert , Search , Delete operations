@@ -151,3 +151,32 @@ public class Trie {
 
         return startsWithRecursive(prefix , node , index+1);
     }
+    
+     public void display(TrieNode current , char arr[] , int level)
+   {
+       if(current.endOfWord)
+       {
+           System.out.println(arr);
+       }
+
+       for(char a = 'a' ; a <= 'z' ; a++)
+       {
+           if(current.children.get(a) != null)
+           {
+               arr[level] = a;
+               display(current.children.get(a) , arr , level+1);
+           }
+       }
+   }
+   
+     public static void main(String[] args)
+    {
+        Trie t = new Trie();
+
+
+        t.insert("teacher");
+        t.insert("parent");
+
+        char [] arr = new char[26];
+        t.display(t.root , arr , 0);
+    }
