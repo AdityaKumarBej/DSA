@@ -1,0 +1,101 @@
+Given a binary matrix, print all unique rows of the given matrix.
+Example:
+
+Input:
+        {0, 1, 0, 0, 1}
+        {1, 0, 1, 1, 0}
+        {0, 1, 0, 0, 1}
+        {1, 1, 1, 0, 0}
+Output:
+    0 1 0 0 1 
+    1 0 1 1 0 
+    1 1 1 0 0 
+Explanation: 
+The rows are r1={0, 1, 0, 0, 1}, 
+r2={1, 0, 1, 1, 0}, r3={0, 1, 0, 0, 1}, 
+r4={1, 1, 1, 0, 0}, As r1 = r3, remove r3
+and print the other rows.
+
+Input:
+        {0, 1, 0}
+        {1, 0, 1}
+        {0, 1, 0}
+Output:
+   0 1 0
+   1 0 1
+Explanation: 
+The rows are r1={0, 1, 0}, 
+r2={1, 0, 1}, r3={0, 1, 0} As r1 = r3,
+remove r3 and print the other rows.
+
+
+public class Trie {
+
+    class TrieNode
+    {
+        Map<Character , TrieNode> children;
+        boolean endOfWord;
+        public TrieNode()
+        {
+            children = new HashMap<>();
+            endOfWord = false;
+        }
+    }
+
+    private final TrieNode root;
+
+    public Trie()
+    {
+        root = new TrieNode();
+    }
+
+    public void insert(String word)
+    {
+        TrieNode current = root;
+        for(int i = 0 ; i < word.length() ; i++)
+        {
+            char ch = word.charAt(i);
+            TrieNode node = current.children.get(ch);
+            if(node == null)
+            {
+                node = new TrieNode();
+                current.children.put(ch , node);
+            }
+            current = node;
+        }
+        current.endOfWord = true;
+    }
+    
+    
+    public void display(TrieNode current , String str , int level)
+   {
+       if(current.endOfWord)
+       {
+           System.out.println(str);
+       }
+
+       for(char a = '0' ; a <= '1' ; a++)
+       {
+           if(current.children.get(a) != null)
+           {
+               String newStr = str + a;
+               display(current.children.get(a) , newStr , level+1);
+           }
+       }
+   }
+
+
+    public static void main(String[] args)
+    {
+        Trie t = new Trie();
+
+
+        t.insert("010");
+        t.insert("101");
+        t.insert("010");
+
+
+        String str = "";
+
+        t.display(t.root , str , 0);
+    }
