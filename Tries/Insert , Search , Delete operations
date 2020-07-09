@@ -262,4 +262,23 @@ class Trie {
         }
         return true;  
     }   
+    
+      void display(TrieNode current , int index , char [] ch)
+    {
+        if(current.isWord)
+        {
+            System.out.println(ch);
+        }
+
+        for(char i = 'a' ; i <= 'z' ; i++)
+        {
+
+            if(current.children[i - 'a'] != null)
+            {
+                ch[index] = i;
+                display(current.children[i - 'a'] , index+1 , ch);
+            }
+
+        }
+    }
 }
