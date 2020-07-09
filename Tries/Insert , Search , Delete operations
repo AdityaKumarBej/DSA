@@ -1,3 +1,4 @@
+METHOD 1 : HASHMAP IMPLEMENTATION
 public class Trie {
 
     class TrieNode
@@ -180,3 +181,85 @@ public class Trie {
         char [] arr = new char[26];
         t.display(t.root , arr , 0);
     }
+
+
+************************************************************************************************************************************************
+
+METHOD 2 : ARRAY IMPLEMENTATION
+
+
+class Trie {
+
+    /** Initialize your data structure here. */
+    
+        public class TrieNode
+        {
+            TrieNode [] child;
+            boolean isWord;
+         
+            TrieNode()
+            {
+                child = new TrieNode[26];
+                isWord = false;
+            }
+        }
+
+    private final TrieNode root;
+    
+    public Trie() 
+    {       
+        root = new TrieNode();
+    }
+
+    /** Inserts a word into the trie. */
+    public void insert(String word) 
+    {
+        TrieNode current = root;
+        for(int i = 0 ; i < word.length() ; i++)
+        {
+            char ch = word.charAt(i);
+            if(current.child[ch - 'a'] == null)
+            {
+                current.child[ch-'a'] = new TrieNode();
+            }
+            current = current.child[ch - 'a'];
+        }
+        current.isWord = true;
+    }
+    
+  
+    
+    /** Returns if the word is in the trie. */
+    public boolean search(String word) 
+    {
+        TrieNode current = root;
+        for(int i = 0; i < word.length () ; i++)
+        {
+            char ch = word.charAt(i);
+            if(current.child[ch - 'a'] == null)
+            {
+                return false;
+            }
+            current = current.child[ch - 'a'];
+        }
+        return current.isWord;
+    }
+    
+  
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    
+    public boolean startsWith(String prefix) 
+    {
+        TrieNode current = root;
+        for(int i = 0 ; i < prefix.length() ; i++)
+        {
+            char ch = prefix.charAt(i);
+            if(current.child[ch-'a'] == null)
+            {
+                return false;
+            }
+            current = current.child[ch-'a'];
+        }
+        return true;  
+    }   
+}
