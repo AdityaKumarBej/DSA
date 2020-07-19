@@ -1,0 +1,45 @@
+A number N is represented in Linked List such that each digit corresponds to a node in linked list. You need to add 1 to it.
+
+Example:
+Input:
+4
+456
+123
+999
+1879
+Output:
+457 
+124 
+1000 
+1880
+
+class Sol
+{
+    public static Node addOne(Node head) 
+    { 
+       int c = addOneToList(head);
+       
+       if(c == 1)
+       {
+           Node new_node = new Node(1);
+           new_node.next = head;
+           return new_node;
+       }
+       return head;
+    }
+    
+    
+    public static int addOneToList(Node head)
+    {
+        if(head == null)
+        {
+            return 1;
+        }
+        
+        int res = head.data + addOneToList(head.next);
+        head.data = res % 10;
+        
+        return res/10;
+    }
+    
+}
