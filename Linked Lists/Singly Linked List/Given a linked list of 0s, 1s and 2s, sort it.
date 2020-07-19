@@ -1,0 +1,58 @@
+Given a linked list of N nodes where nodes can contain values 0s, 1s, and 2s only. 
+The task is to segregate 0s, 1s, and 2s linked list such that all zeros segregate to head side, 2s at the end of the linked list, and 1s in the mid of 0s and 2s.
+
+Input: 1 -> 1 -> 2 -> 0 -> 2 -> 0 -> 1 -> NULL
+Output: 0 -> 0 -> 1 -> 1 -> 1 -> 2 -> 2 -> NULL
+
+Input: 1 -> 1 -> 2 -> 1 -> 0 -> NULL
+Output: 0 -> 1 -> 1 -> 1 -> 2 -> NULL
+
+class LinkedList
+{
+    static Node segregate(Node head)
+    {
+        Node curr = head;
+        
+        if(head == null) return null;
+        
+        int count0 = 0;
+        int count1 = 0;
+        int count2 = 0;
+        
+        while(curr != null)
+        {
+            if(curr.data == 0)count0++;
+            if(curr.data == 1)count1++;
+            if(curr.data == 2)count2++;
+            
+            curr = curr.next;
+        }
+        
+        Node temp = head;
+        int k = 0;
+        int l = 0;
+        int m = 0;
+        while(k != count0)
+        {
+            temp.data = 0;
+            temp = temp.next;
+            k++;
+        }
+        
+        while(l != count1)
+        {
+            temp.data = 1;
+            temp = temp.next;
+            l++;
+        }
+        
+        while(m != count2)
+        {
+            temp.data = 2;
+            temp = temp.next;
+            m++;
+        }
+        
+        return head;  
+    }
+}
