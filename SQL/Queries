@@ -1,0 +1,23 @@
+1. Selecting and displaying all columns in a table
+
+Schema : Sakila
+Table : Address
+
+SELECT * FROM Sakila.Address
+
+**************************************************************************************************************
+
+2. Create new tables
+
+Select a schema
+Table name - countries and add 3 columns
+
+CREATE TABLE countries(
+COUNTRY_ID varchar(2),
+COUNTRY_NAME varchar(40),
+REGION_ID decimal(10,0),
+);
+
+
+**************************************************************************************************************
+
