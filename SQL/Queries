@@ -21,3 +21,13 @@ REGION_ID decimal(10,0),
 
 **************************************************************************************************************
 
+3. Ordering by ascending or descending
+
+arranging column name "first_name" in actor table under sakila schema
+
+Select * from sakila.actor
+ORDER BY first_name DESC;
+
+Select * from sakila.actor
+ORDER BY first_name ASC;
+
