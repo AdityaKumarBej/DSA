@@ -31,3 +31,11 @@ ORDER BY first_name DESC;
 Select * from sakila.actor
 ORDER BY first_name ASC;
 
+**************************************************************************************************************
+
+4.Write a SQL statement to display a string "This is SQL Exercise, Practice and Solution"
+
+SELECT "This is Aditya";
+
+**************************************************************************************************************
+
