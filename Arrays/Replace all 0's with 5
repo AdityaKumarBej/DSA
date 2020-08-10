@@ -1,0 +1,38 @@
+1. Replace all 0's with 5
+Given an integer as input and replace all the ‘0’ with ‘5’ in the integer.
+Examples:
+
+Input: 102 
+Output: 152
+Explantion: All the digits which are '0' is replaced by '5' 
+
+Input: 1020 
+Output: 1525
+Explantion: All the digits which are '0' is replaced by '5' 
+
+
+class GfG {
+    int convertfive(int num) {
+        StringBuilder sb = new StringBuilder();
+        while(num > 0)
+        {
+            int temp = num%10;
+            if(temp == 0)
+            {
+                sb.append(5);
+            }
+            else
+            {
+                sb.append(temp);
+            }
+            num = num/10;
+        }
+        StringBuilder result = new StringBuilder();
+        for(int i = sb.length()-1 ; i >= 0 ; i--)
+        {
+            result.append(sb.charAt(i));
+        }
+        return 
+        Integer.parseInt(result.toString());
+    }
+}
